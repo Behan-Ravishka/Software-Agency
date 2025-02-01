@@ -412,3 +412,44 @@ testimonialContent.addEventListener('mouseleave', startAutoScroll);
 // Render Testimonials on Page Load
 renderTestimonials();
 showTestimonial(currentTestimonial);
+
+// GSAP Animation for Logo
+const logoIcon = document.querySelector('.logo-icon');
+const logoText = document.querySelector('.logo-text');
+
+// Animation on page load
+gsap.from(logoIcon, {
+    duration: 1,
+    scale: 0,
+    rotation: 360,
+    ease: 'bounce.out',
+});
+
+gsap.from(logoText, {
+    duration: 1,
+    opacity: 0,
+    x: -50,
+    ease: 'power2.out',
+    delay: 0.5,
+});
+
+// Hover Animation
+logoIcon.addEventListener('mouseenter', () => {
+    gsap.to(logoIcon, {
+        duration: 0.5,
+        scale: 1.2,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut',
+    });
+});
+
+logoText.addEventListener('mouseenter', () => {
+    gsap.to(logoText, {
+        duration: 0.5,
+        scale: 1.1,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut',
+    });
+});
