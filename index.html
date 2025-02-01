@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Logo Page -->
+    <div id="logo-page">
+        <div class="logo">
+            <div class="icon"></div>
+            <div class="text">Code<span>Craft</span> Studios</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">Code<span>Craft</span> Studios</div>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Dark Mode Toggle -->
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>We Build <span class="animated-text">Modern Solutions</span></h1>
+            <p>Your trusted partner for web, mobile, and AI solutions.</p>
+            <a href="#contact" class="cta-button">Get a Quote</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We are a team of passionate developers and designers dedicated to creating innovative and user-friendly
+                solutions for businesses worldwide.</p>
+            <div class="strengths">
+                <div class="strength-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                </div>
+                <div class="strength-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Apps</h3>
+                </div>
+                <div class="strength-item">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Solutions</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Development</h3>
+                    <p>We create responsive, user-friendly websites tailored to your needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Build cross-platform mobile applications with cutting-edge technology.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Solutions</h3>
+                    <p>Leverage AI to automate processes and gain valuable insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <div class="project-cards">
+                <div class="project-card">
+                    <img src="assets/images/project1.jpg" alt="Project 1">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A fully-featured e-commerce platform with AI-driven recommendations.</p>
+                </div>
+                <div class="project-card">
+                    <img src="assets/images/project2.jpg" alt="Project 2">
+                    <h3>Fitness App</h3>
+                    <p>A mobile app for tracking workouts and nutrition.</p>
+                </div>
+                <div class="project-card">
+                    <img src="assets/images/project3.jpg" alt="Project 3">
+                    <h3>AI Chatbot</h3>
+                    <p>An AI-powered chatbot for customer support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <div id="testimonial-content"></div>
+                <button id="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+                <button id="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Software Agency. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back-to-Top Button -->
+    <button id="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <span>AI Chatbot</span>
+            <button id="chatbot-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-body">
+            <div id="chatbot-messages"></div>
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
+        </div>
+    </div>
+    <button id="chatbot-toggle">
+        <i class="fas fa-comment"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
