@@ -51,33 +51,27 @@
             </button>
 
             <!-- Notification Center -->
-            <div id="notification-center">
-                <button id="notification-toggle">
-                    <i class="fas fa-bell"></i>
-                    <span id="notification-count">0</span>
-                </button>
-                <div id="notification-dropdown">
-                    <div id="notification-header">
-                        <h3>Notifications</h3>
-                        <div id="notification-filters">
-                            <button class="filter-btn active" data-filter="all">All</button>
-                            <button class="filter-btn" data-filter="offers">Offers</button>
-                            <button class="filter-btn" data-filter="news">News</button>
-                            <button class="filter-btn" data-filter="updates">Updates</button>
-                        </div>
-                        <button id="mark-all-read">Mark All as Read</button>
-                    </div>
-                    <div id="notification-list">
-                        <!-- Notifications will be dynamically added here -->
-                    </div>
-                    <div id="notification-archive">
-                        <h4>Archived Notifications</h4>
-                        <div id="archive-list">
-                            <!-- Archived notifications will be dynamically added here -->
-                        </div>
-                    </div>
-                </div>
+<div id="notification-center">
+    <button id="notification-toggle">
+        <i class="fas fa-bell"></i>
+        <span id="notification-count">0</span>
+    </button>
+    <div id="notification-dropdown">
+        <div id="notification-header">
+            <h3>Notifications</h3>
+            <div>
+                <button id="mark-all-read" title="Mark All as Read"><i class="fas fa-check-double"></i></button>
+                <button id="clear-all" title="Clear All"><i class="fas fa-trash"></i></button>
             </div>
+        </div>
+        <div id="notification-list">
+            <!-- Notifications will be dynamically added here -->
+        </div>
+        <div id="notification-footer">
+            <button id="view-archive">View Archive</button>
+        </div>
+    </div>
+</div>
         </div>
     </nav>
 
