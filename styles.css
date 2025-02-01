@@ -262,7 +262,7 @@ nav .nav-links a:hover {
 /* Notification Center */
 #notification-center {
     position: relative;
-    margin-left: auto;
+    margin-left: -20%;
 }
 
 #notification-toggle {
@@ -505,6 +505,7 @@ body.dark-mode .notification-item .swipe-area {
     /* Ensure the notification dropdown takes full width and is positioned correctly */
     #hamburger-menu {
         display: block;
+        margin-left: 5%;
     }
 
     nav .nav-links {
@@ -523,7 +524,7 @@ body.dark-mode .notification-item .swipe-area {
     }
 
     #notification-center {
-        margin-left: 0;
+        margin-left: 5%;
     }
     
     #notification-dropdown {
