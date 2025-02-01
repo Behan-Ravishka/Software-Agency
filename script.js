@@ -72,9 +72,12 @@ if (savedTheme === 'dark') {
 const notificationToggle = document.getElementById('notification-toggle');
 const notificationDropdown = document.getElementById('notification-dropdown');
 const notificationList = document.getElementById('notification-list');
+const archivedList = document.getElementById('archived-list');
 const markAllReadButton = document.getElementById('mark-all-read');
 const clearAllButton = document.getElementById('clear-all');
-const viewArchiveButton = document.getElementById('view-archive');
+const toggleArchiveButton = document.getElementById('toggle-archive');
+const activeTab = document.getElementById('active-tab');
+const archivedTab = document.getElementById('archived-tab');
 const notificationCount = document.getElementById('notification-count');
 
 let notifications = [
@@ -85,6 +88,7 @@ let notifications = [
 
 // Render Notifications
 function renderNotifications() {
+    // Render Active Notifications
     notificationList.innerHTML = notifications
         .filter(notification => !notification.archived)
         .map(notification => `
@@ -92,6 +96,25 @@ function renderNotifications() {
                 <p class="notification-content">${notification.content}</p>
                 <div class="notification-actions">
                     <button class="read-more">Read More</button>
+                    <button class="archive-notification">Archive</button>
+                    <button class="delete-notification">Delete</button>
+                </div>
+                <div class="swipe-area">
+                    <span>Mark as Read</span>
+                    <span>Delete</span>
+                </div>
+            </div>
+        `).join('');
+
+    // Render Archived Notifications
+    archivedList.innerHTML = notifications
+        .filter(notification => notification.archived)
+        .map(notification => `
+            <div class="notification-item ${notification.read ? 'read' : 'unread'}" data-id="${notification.id}">
+                <p class="notification-content">${notification.content}</p>
+                <div class="notification-actions">
+                    <button class="read-more">Read More</button>
+                    <button class="unarchive-notification">Unarchive</button>
                     <button class="delete-notification">Delete</button>
                 </div>
                 <div class="swipe-area">
@@ -123,18 +146,48 @@ clearAllButton.addEventListener('click', () => {
     renderNotifications();
 });
 
-// View Archive
-viewArchiveButton.addEventListener('click', () => {
-    alert("Archived Notifications: " + notifications.filter(n => n.archived).map(n => n.content).join("\n"));
+// Toggle Archive View
+activeTab.addEventListener('click', () => {
+    activeTab.classList.add('active');
+    archivedTab.classList.remove('active');
+    notificationList.style.display = 'block';
+    archivedList.style.display = 'none';
+});
+
+archivedTab.addEventListener('click', () => {
+    archivedTab.classList.add('active');
+    activeTab.classList.remove('active');
+    notificationList.style.display = 'none';
+    archivedList.style.display = 'block';
 });
 
 // Handle Notification Actions
 notificationList.addEventListener('click', (e) => {
+    handleNotificationAction(e, 'archive-notification', (notification) => {
+        notification.archived = true;
+    });
+});
+
+archivedList.addEventListener('click', (e) => {
+    handleNotificationAction(e, 'unarchive-notification', (notification) => {
+        notification.archived = false;
+    });
+});
+
+function handleNotificationAction(e, actionClass, callback) {
     if (e.target.classList.contains('read-more')) {
         const notificationItem = e.target.closest('.notification-item');
         const notificationId = parseInt(notificationItem.dataset.id);
         const notification = notifications.find(n => n.id === notificationId);
         alert(`Read More: ${notification.content}`);
+    }
+
+    if (e.target.classList.contains(actionClass)) {
+        const notificationItem = e.target.closest('.notification-item');
+        const notificationId = parseInt(notificationItem.dataset.id);
+        const notification = notifications.find(n => n.id === notificationId);
+        callback(notification);
+        renderNotifications();
     }
 
     if (e.target.classList.contains('delete-notification')) {
@@ -143,7 +196,7 @@ notificationList.addEventListener('click', (e) => {
         notifications = notifications.filter(n => n.id !== notificationId);
         renderNotifications();
     }
-});
+}
 
 // Swipe Effects
 let touchStartX = 0;
@@ -184,6 +237,12 @@ function handleSwipe(e) {
         }, 300);
     }
 }
+
+// Hamburger Menu Toggle
+document.getElementById('hamburger-menu').addEventListener('click', function () {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+});
 
 // Initial Render
 renderNotifications();

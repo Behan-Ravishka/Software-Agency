@@ -24,6 +24,35 @@ body.dark-mode {
     margin: 0 auto;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide nav links on mobile */
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .service-cards,
+    .project-cards {
+        flex-direction: column;
+    }
+
+    .testimonial-slider {
+        max-width: 100%;
+    }
+}
+
 /* Logo Page */
 #logo-page {
     position: fixed;
@@ -151,6 +180,9 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Logo Styles */
@@ -167,7 +199,6 @@ nav .logo {
 
 nav .logo:hover {
     opacity: 0.8;
-    /* Hover effect */
 }
 
 nav .logo .logo-icon {
@@ -212,37 +243,6 @@ nav .nav-links a {
 
 nav .nav-links a:hover {
     color: #ff6b6b;
-    /* Hover effect */
-}
-
-/* Navigation Bar */
-nav {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-    /* Smooth transition */
-}
-
-body.dark-mode nav {
-    background-color: #1f1f1f;
-}
-
-/* Hide Navbar on Scroll Down */
-nav.hide {
-    transform: translateY(-100%);
-    /* Move navbar out of view */
-}
-
-/* Show Navbar on Scroll Up */
-nav.show {
-    transform: translateY(0);
-    /* Bring navbar back into view */
 }
 
 /* Dark Mode Toggle */
@@ -257,14 +257,12 @@ nav.show {
 
 #theme-toggle:hover {
     color: #ff6b6b;
-    /* Hover effect */
 }
 
 /* Notification Center */
 #notification-center {
     position: relative;
     margin-left: auto;
-    /* Push to the right side of the navbar */
 }
 
 #notification-toggle {
@@ -297,7 +295,7 @@ nav.show {
     top: 40px;
     right: 0;
     width: 350px;
-    background-color: #fff;
+    background-color: #6a11cb;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -330,7 +328,7 @@ nav.show {
 #notification-header button {
     background: none;
     border: none;
-    color: #6a11cb;
+    color: #ffffff;
     cursor: pointer;
     font-size: 1rem;
     margin-left: 10px;
@@ -338,12 +336,43 @@ nav.show {
 }
 
 #notification-header button:hover {
-    color: #2575fc;
+    color: #6a11cb;
 }
 
-#notification-list {
+#notification-tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+#notification-tabs button {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#notification-tabs button.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#notification-tabs button:hover {
+    background-color: #ffffff;
+}
+
+#notification-list,
+#archived-list {
     max-height: 300px;
     overflow-y: auto;
+    color: #6a11cb;
+}
+
+#archived-list.hidden {
+    display: none;
 }
 
 .notification-item {
@@ -355,7 +384,7 @@ nav.show {
 }
 
 .notification-item.unread {
-    background-color: #f9f9f9;
+    background-color: #d6d6d6;
 }
 
 .notification-item.read {
@@ -428,12 +457,25 @@ body.dark-mode #notification-header {
     border-color: #555;
 }
 
+body.dark-mode #notification-tabs button {
+    color: #f5ecff;
+}
+
+body.dark-mode #notification-tabs button.active {
+    background-color: #bdbdbd;
+    color: #6a11cb;
+}
+
+body.dark-mode #notification-tabs button:hover {
+    background-color: #dad9d9;
+}
+
 body.dark-mode .notification-item {
     border-color: #555;
 }
 
 body.dark-mode .notification-item.unread {
-    background-color: #444;
+    background-color: #bdbdbd;
 }
 
 body.dark-mode .notification-item.read {
@@ -441,11 +483,53 @@ body.dark-mode .notification-item.read {
 }
 
 body.dark-mode .notification-item:hover {
-    background-color: #444;
+    background-color: #dad9d9;
 }
 
 body.dark-mode .notification-item .swipe-area {
     background-color: #2575fc;
+}
+
+/* Hamburger Menu */
+#hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #hamburger-menu {
+        display: block;
+    }
+
+    nav .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        padding: 1rem;
+    }
+
+    nav .nav-links.active {
+        display: flex;
+    }
+
+    #notification-center {
+        margin-left: 0;
+    }
+
+    #notification-dropdown {
+        width: 100%;
+        right: 0;
+        left: 0;
+    }
 }
 
 /* Hero Section */
