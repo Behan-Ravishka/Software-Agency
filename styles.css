@@ -500,8 +500,9 @@ body.dark-mode .notification-item .swipe-area {
     cursor: pointer;
 }
 
-/* Responsive Design */
+/* Responsive Design for Mobile */
 @media (max-width: 768px) {
+    /* Ensure the notification dropdown takes full width and is positioned correctly */
     #hamburger-menu {
         display: block;
     }
@@ -524,11 +525,63 @@ body.dark-mode .notification-item .swipe-area {
     #notification-center {
         margin-left: 0;
     }
-
+    
     #notification-dropdown {
         width: 100%;
         right: 0;
         left: 0;
+        top: 50px;
+        border-radius: 0;
+        position: fixed; /* Fix the dropdown to the viewport */
+        z-index: 1000; /* Ensure it appears above other content */
+    }
+
+    /* Adjust the height of notification lists for better mobile viewing */
+    #notification-list,
+    #archived-list {
+        max-height: 50vh; /* Use viewport height for better responsiveness */
+        overflow-y: auto; /* Ensure scrolling works */
+    }
+
+    /* Stack notification action buttons vertically for smaller screens */
+    .notification-item .notification-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    /* Make buttons full width and align text to the left */
+    .notification-item .notification-actions button {
+        width: 100%;
+        text-align: left;
+        padding: 8px; /* Add padding for better touch targets */
+    }
+
+    /* Ensure the notification toggle button is visible and properly aligned */
+    #notification-toggle {
+        font-size: 1.5rem; /* Increase size for better touch targets */
+    }
+
+    /* Adjust the notification count position for better visibility */
+    #notification-count {
+        top: -5px;
+        right: -5px;
+        font-size: 0.7rem; /* Slightly smaller for mobile */
+    }
+
+    /* Ensure the notification header is properly aligned */
+    #notification-header {
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    /* Adjust the tabs for better mobile usability */
+    #notification-tabs button {
+        padding: 8px; /* Reduce padding for smaller screens */
+        font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+
+    /* Ensure the notification content is readable */
+    .notification-item .notification-content {
+        font-size: 0.9rem; /* Slightly smaller font size for mobile */
     }
 }
 
