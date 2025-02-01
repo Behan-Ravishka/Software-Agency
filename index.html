@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Agency</title>
+    <title>CodeCraft Studios</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -16,6 +16,9 @@
 </head>
 
 <body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
 
     <!-- Logo Page -->
     <div id="logo-page">
@@ -46,6 +49,35 @@
             <button id="theme-toggle" aria-label="Toggle Dark Mode">
                 <i class="fas fa-moon"></i>
             </button>
+
+            <!-- Notification Center -->
+            <div id="notification-center">
+                <button id="notification-toggle">
+                    <i class="fas fa-bell"></i>
+                    <span id="notification-count">0</span>
+                </button>
+                <div id="notification-dropdown">
+                    <div id="notification-header">
+                        <h3>Notifications</h3>
+                        <div id="notification-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="offers">Offers</button>
+                            <button class="filter-btn" data-filter="news">News</button>
+                            <button class="filter-btn" data-filter="updates">Updates</button>
+                        </div>
+                        <button id="mark-all-read">Mark All as Read</button>
+                    </div>
+                    <div id="notification-list">
+                        <!-- Notifications will be dynamically added here -->
+                    </div>
+                    <div id="notification-archive">
+                        <h4>Archived Notifications</h4>
+                        <div id="archive-list">
+                            <!-- Archived notifications will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -111,17 +143,17 @@
             <h2>Our Projects</h2>
             <div class="project-cards">
                 <div class="project-card">
-                    <img src="assets/images/project1.jpg" alt="Project 1">
+                    <img src="Images/project1.jpg" alt="Project 1">
                     <h3>E-Commerce Platform</h3>
                     <p>A fully-featured e-commerce platform with AI-driven recommendations.</p>
                 </div>
                 <div class="project-card">
-                    <img src="assets/images/project2.jpg" alt="Project 2">
+                    <img src="Images/project2.jpg" alt="Project 2">
                     <h3>Fitness App</h3>
                     <p>A mobile app for tracking workouts and nutrition.</p>
                 </div>
                 <div class="project-card">
-                    <img src="assets/images/project3.jpg" alt="Project 3">
+                    <img src="Images/project3.jpg" alt="Project 3">
                     <h3>AI Chatbot</h3>
                     <p>An AI-powered chatbot for customer support.</p>
                 </div>
@@ -164,7 +196,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Software Agency. All rights reserved.</p>
+            <p>&copy; 2025 CodeCraft Studios. All rights reserved.</p>
         </div>
     </footer>
 

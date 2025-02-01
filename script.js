@@ -10,6 +10,45 @@ window.addEventListener('load', () => {
     }, 3000); // Adjust the delay to match the fade-out animation duration
 });
 
+// Progress Bar
+const progressBar = document.getElementById('progress-bar');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollY / totalHeight) * 100;
+
+    // Update the width of the progress bar
+    progressBar.style.width = `${progress}%`;
+});
+
+// Navbar Scroll Effect
+let lastScroll = 0;
+const navbar = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll <= 0) {
+        // At the top of the page, always show the navbar
+        navbar.classList.remove('hide');
+        navbar.classList.add('show');
+        return;
+    }
+
+    if (currentScroll > lastScroll && !navbar.classList.contains('hide')) {
+        // Scrolling down: hide the navbar
+        navbar.classList.remove('show');
+        navbar.classList.add('hide');
+    } else if (currentScroll < lastScroll && navbar.classList.contains('hide')) {
+        // Scrolling up: show the navbar
+        navbar.classList.remove('hide');
+        navbar.classList.add('show');
+    }
+
+    lastScroll = currentScroll;
+});
+
 // Dark/Light Mode Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
@@ -28,6 +67,142 @@ if (savedTheme === 'dark') {
     body.classList.add('dark-mode');
     themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
 }
+
+// Notification Center
+const notificationToggle = document.getElementById('notification-toggle');
+const notificationDropdown = document.getElementById('notification-dropdown');
+const notificationList = document.getElementById('notification-list');
+const archiveList = document.getElementById('archive-list');
+const markAllReadButton = document.getElementById('mark-all-read');
+const notificationCount = document.getElementById('notification-count');
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+let notifications = [
+    { id: 1, content: "🎉 New Offer: Get 20% off on all services!", type: "offers", read: false },
+    { id: 2, content: "🚀 Tech News: AI is revolutionizing the industry.", type: "news", read: false },
+    { id: 3, content: "📢 Update: New features added to the dashboard.", type: "updates", read: false }
+];
+
+let archivedNotifications = [];
+
+// Render Notifications
+function renderNotifications(filter = "all") {
+    const filteredNotifications = notifications.filter(notification => 
+        filter === "all" || notification.type === filter
+    );
+
+    notificationList.innerHTML = filteredNotifications.map(notification => `
+        <div class="notification-item ${notification.read ? 'read' : 'unread'}" data-id="${notification.id}">
+            <p class="notification-content">${notification.content}</p>
+            <div class="notification-actions">
+                <button class="read-more"><i class="fas fa-eye"></i> Read More</button>
+                <button class="delete-notification"><i class="fas fa-trash"></i> Delete</button>
+                <button class="archive-notification"><i class="fas fa-archive"></i> Archive</button>
+            </div>
+            <div class="swipe-area">
+                <span><i class="fas fa-check"></i> Mark as Read</span>
+                <span><i class="fas fa-trash"></i> Delete</span>
+            </div>
+        </div>
+    `).join('');
+
+    // Update Notification Count
+    const unreadCount = notifications.filter(n => !n.read).length;
+    notificationCount.textContent = unreadCount;
+}
+
+// Render Archived Notifications
+function renderArchivedNotifications() {
+    archiveList.innerHTML = archivedNotifications.map(notification => `
+        <div class="notification-item read" data-id="${notification.id}">
+            <p class="notification-content">${notification.content}</p>
+        </div>
+    `).join('');
+}
+
+// Toggle Notification Dropdown
+notificationToggle.addEventListener('click', () => {
+    notificationDropdown.classList.toggle('visible');
+});
+
+// Mark All as Read
+markAllReadButton.addEventListener('click', () => {
+    notifications.forEach(notification => notification.read = true);
+    renderNotifications();
+});
+
+// Handle Notification Actions
+notificationList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('read-more')) {
+        const notificationItem = e.target.closest('.notification-item');
+        const notificationId = parseInt(notificationItem.dataset.id);
+        const notification = notifications.find(n => n.id === notificationId);
+        alert(`Read More: ${notification.content}`);
+    }
+
+    if (e.target.classList.contains('delete-notification')) {
+        const notificationItem = e.target.closest('.notification-item');
+        const notificationId = parseInt(notificationItem.dataset.id);
+        notifications = notifications.filter(n => n.id !== notificationId);
+        renderNotifications();
+    }
+
+    if (e.target.classList.contains('archive-notification')) {
+        const notificationItem = e.target.closest('.notification-item');
+        const notificationId = parseInt(notificationItem.dataset.id);
+        const notification = notifications.find(n => n.id === notificationId);
+        archivedNotifications.push(notification);
+        notifications = notifications.filter(n => n.id !== notificationId);
+        renderNotifications();
+        renderArchivedNotifications();
+    }
+});
+
+// Swipe Effects
+let touchStartX = 0;
+let touchEndX = 0;
+
+notificationList.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+notificationList.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe(e);
+});
+
+function handleSwipe(e) {
+    const notificationItem = e.target.closest('.notification-item');
+    if (!notificationItem) return;
+
+    const swipeDistance = touchEndX - touchStartX;
+
+    if (swipeDistance < -50) {
+        // Swipe Left: Delete
+        const notificationId = parseInt(notificationItem.dataset.id);
+        notifications = notifications.filter(n => n.id !== notificationId);
+        renderNotifications();
+    } else if (swipeDistance > 50) {
+        // Swipe Right: Mark as Read
+        const notificationId = parseInt(notificationItem.dataset.id);
+        const notification = notifications.find(n => n.id === notificationId);
+        notification.read = true;
+        renderNotifications();
+    }
+}
+
+// Filter Notifications
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        renderNotifications(button.dataset.filter);
+    });
+});
+
+// Initial Render
+renderNotifications();
+renderArchivedNotifications();
 
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
@@ -104,9 +279,9 @@ const backToTopButton = document.getElementById('back-to-top');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
-        backToTopButton.style.display = 'block'; // Show the button
+        backToTopButton.classList.add('visible'); // Show the button
     } else {
-        backToTopButton.style.display = 'none'; // Hide the button
+        backToTopButton.classList.remove('visible'); // Hide the button
     }
 });
 

@@ -75,6 +75,23 @@ body.dark-mode {
     color: #6a11cb;
 }
 
+/* Progress Bar */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px; /* Height of the progress bar */
+    background-color: #6a11cb; /* Color of the progress bar */
+    width: 0%; /* Initial width */
+    z-index: 10000; /* Ensure it's above all other elements */
+    transition: width 0.1s ease-out; /* Smooth transition for width updates */
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode #progress-bar {
+    background-color: #6a11cb; /* Adjust color for dark mode */
+}
+
 /* Main Website Content */
 #main-content.hidden {
     display: none;
@@ -192,6 +209,33 @@ nav .nav-links a:hover {
     /* Hover effect */
 }
 
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+body.dark-mode nav {
+    background-color: #1f1f1f;
+}
+
+/* Hide Navbar on Scroll Down */
+nav.hide {
+    transform: translateY(-100%); /* Move navbar out of view */
+}
+
+/* Show Navbar on Scroll Up */
+nav.show {
+    transform: translateY(0); /* Bring navbar back into view */
+}
+
 /* Dark Mode Toggle */
 #theme-toggle {
     background: none;
@@ -207,9 +251,198 @@ nav .nav-links a:hover {
     /* Hover effect */
 }
 
+/* Notification Center */
+#notification-center {
+    position: relative;
+    margin-left: auto; /* Push to the right side of the navbar */
+}
+
+#notification-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+#notification-toggle:hover {
+    transform: scale(1.1);
+}
+
+#notification-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4c4c;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+#notification-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 500px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+#notification-dropdown.visible {
+    display: block;
+}
+
+#notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#notification-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#notification-filters {
+    display: flex;
+    gap: 5px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-btn.active {
+    background-color: #6a11cb;
+    color: #fff;
+}
+
+#mark-all-read {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+#notification-list, #archive-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    transition: background-color 0.3s, transform 0.3s;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.notification-item.unread {
+    background-color: #e3f2fd;
+}
+
+.notification-item.read {
+    background-color: #f9f9f9;
+}
+
+.notification-item .notification-content {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.notification-item .notification-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.notification-item .notification-actions button {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.notification-item .notification-actions button:hover {
+    color: #2575fc;
+}
+
+/* Swipe Effects */
+.notification-item {
+    overflow: hidden;
+}
+
+.notification-item .swipe-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    background-color: #ff4c4c;
+    color: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+}
+
+.notification-item.swipe-left .swipe-area {
+    transform: translateX(0);
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode #notification-dropdown {
+    background-color: #333;
+    border-color: #555;
+}
+
+body.dark-mode #notification-header {
+    border-color: #555;
+}
+
+body.dark-mode .notification-item {
+    border-color: #555;
+}
+
+body.dark-mode .notification-item.unread {
+    background-color: #444;
+}
+
+body.dark-mode .notification-item.read {
+    background-color: #333;
+}
+
+body.dark-mode .notification-item .swipe-area {
+    background-color: #2575fc;
+}
+
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: url('Images/hero bg.jpg') no-repeat center center/cover;
     color: #fff;
     padding: 5rem 0;
     text-align: center;
@@ -217,8 +450,34 @@ nav .nav-links a:hover {
     overflow: hidden;
 }
 
+/* Overlay Layer */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay */
+    z-index: 1;
+}
+
+/* Ensure text is above the overlay */
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .hero::before {
+    background: rgba(0, 0, 0, 0.7);
+    /* Darker overlay for dark mode */
+}
+
 body.dark-mode .hero {
-    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #fff;
+    /* Ensure text remains white in dark mode */
 }
 
 .hero h1 {
@@ -500,8 +759,7 @@ html {
 
 /* Back-to-Top Button */
 #back-to-top {
-    display: none;
-    /* Hidden by default */
+    display: block; /* Always block to allow opacity/visibility transitions */
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -514,7 +772,10 @@ html {
     font-size: 1.2rem;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, opacity 0.3s;
+    transition: background-color 0.3s, opacity 0.3s, visibility 0.3s;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Initially hidden */
+    z-index: 1000; /* Ensure it's above other elements */
 }
 
 #back-to-top:hover {
@@ -522,8 +783,8 @@ html {
 }
 
 #back-to-top.visible {
-    display: block;
-    opacity: 1;
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Fully visible */
 }
 
 /* Chatbot */
