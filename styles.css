@@ -502,6 +502,7 @@ body.dark-mode .notification-item .swipe-area {
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
+
     /* Ensure the notification dropdown takes full width and is positioned correctly */
     #hamburger-menu {
         display: block;
@@ -526,22 +527,26 @@ body.dark-mode .notification-item .swipe-area {
     #notification-center {
         margin-left: 5%;
     }
-    
+
     #notification-dropdown {
         width: 100%;
         right: 0;
         left: 0;
         top: 50px;
         border-radius: 0;
-        position: fixed; /* Fix the dropdown to the viewport */
-        z-index: 1000; /* Ensure it appears above other content */
+        position: fixed;
+        /* Fix the dropdown to the viewport */
+        z-index: 1000;
+        /* Ensure it appears above other content */
     }
 
     /* Adjust the height of notification lists for better mobile viewing */
     #notification-list,
     #archived-list {
-        max-height: 50vh; /* Use viewport height for better responsiveness */
-        overflow-y: auto; /* Ensure scrolling works */
+        max-height: 50vh;
+        /* Use viewport height for better responsiveness */
+        overflow-y: auto;
+        /* Ensure scrolling works */
     }
 
     /* Stack notification action buttons vertically for smaller screens */
@@ -554,35 +559,42 @@ body.dark-mode .notification-item .swipe-area {
     .notification-item .notification-actions button {
         width: 100%;
         text-align: left;
-        padding: 8px; /* Add padding for better touch targets */
+        padding: 8px;
+        /* Add padding for better touch targets */
     }
 
     /* Ensure the notification toggle button is visible and properly aligned */
     #notification-toggle {
-        font-size: 1.5rem; /* Increase size for better touch targets */
+        font-size: 1.5rem;
+        /* Increase size for better touch targets */
     }
 
     /* Adjust the notification count position for better visibility */
     #notification-count {
         top: -5px;
         right: -5px;
-        font-size: 0.7rem; /* Slightly smaller for mobile */
+        font-size: 0.7rem;
+        /* Slightly smaller for mobile */
     }
 
     /* Ensure the notification header is properly aligned */
     #notification-header {
-        padding: 8px; /* Reduce padding for smaller screens */
+        padding: 8px;
+        /* Reduce padding for smaller screens */
     }
 
     /* Adjust the tabs for better mobile usability */
     #notification-tabs button {
-        padding: 8px; /* Reduce padding for smaller screens */
-        font-size: 0.8rem; /* Smaller font size for mobile */
+        padding: 8px;
+        /* Reduce padding for smaller screens */
+        font-size: 0.8rem;
+        /* Smaller font size for mobile */
     }
 
     /* Ensure the notification content is readable */
     .notification-item .notification-content {
-        font-size: 0.9rem; /* Slightly smaller font size for mobile */
+        font-size: 0.9rem;
+        /* Slightly smaller font size for mobile */
     }
 }
 
@@ -603,10 +615,60 @@ body.dark-mode .notification-item .swipe-area {
     .hero {
         background: url('Images/hero bg.jpg') no-repeat center center/cover;
         color: #fff;
-        padding: 3rem 0;
+        padding: 3rem 1rem;
+        /* Adjusted padding for better spacing */
         text-align: center;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 130vh;
+        /* Ensure the hero section takes full viewport height */
+    }
+
+    .hero .container {
+        max-width: 100%;
+        z-index: 1;
+        position: relative;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero .cta-button {
+        background-color: #6a11cb;
+        color: #fff;
+        padding: 12px 24px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .hero .cta-button:hover {
+        background-color: #2575fc;
+    }
+
+    /* Lottie Animation Positioning */
+    lottie-player {
+        width: 80%;
+        /* Adjust width for better fit */
+        max-width: 300px;
+        /* Limit maximum width */
+        margin-top: 1rem;
+        /* Add spacing between text and animation */
+        z-index: -1;
+        /* Ensure it appears above the background */
     }
 }
 
@@ -618,7 +680,7 @@ body.dark-mode .notification-item .swipe-area {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     /* Dark overlay */
     z-index: 1;
 }
@@ -631,7 +693,7 @@ body.dark-mode .notification-item .swipe-area {
 
 /* Dark Mode Adjustments */
 body.dark-mode .hero::before {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     /* Darker overlay for dark mode */
 }
 
