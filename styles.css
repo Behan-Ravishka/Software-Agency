@@ -501,6 +501,7 @@ html {
 /* Back-to-Top Button */
 #back-to-top {
     display: none;
+    /* Hidden by default */
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -597,6 +598,11 @@ body.dark-mode .chatbot-message.bot {
     color: #fff;
 }
 
+body.dark-mode .chatbot-message.bot {
+    background-color: #444;
+    color: #fff;
+}
+
 body.dark-mode #chatbot-messages {
     border-color: #555;
 }
@@ -629,13 +635,41 @@ body.dark-mode #chatbot-input {
 }
 
 /* Testimonials Section */
+.testimonials {
+    padding: 4rem 0;
+    background-color: #f1f1f1;
+}
+
+body.dark-mode .testimonials {
+    background-color: #1f1f1f;
+}
+
 .testimonial-slider {
     position: relative;
     text-align: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #testimonial-content {
-    margin: 20px 0;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.dark-mode .testimonial-item {
+    background-color: #333;
+    color: #fff;
 }
 
 #testimonial-prev,
@@ -648,6 +682,7 @@ body.dark-mode #chatbot-input {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 10;
 }
 
 body.dark-mode #testimonial-prev,
@@ -656,9 +691,14 @@ body.dark-mode #testimonial-next {
 }
 
 #testimonial-prev {
-    left: -30px;
+    left: 20px;
 }
 
 #testimonial-next {
-    right: -30px;
+    right: 20px;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }

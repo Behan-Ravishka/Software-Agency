@@ -116,3 +116,81 @@ backToTopButton.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// Testimonials Data
+const testimonials = [
+    {
+        text: "Amazing work! The team delivered beyond our expectations.",
+        author: "Client A"
+    },
+    {
+        text: "Highly professional and creative. Highly recommended!",
+        author: "Client B"
+    },
+    {
+        text: "The best software agency we've worked with. Great results!",
+        author: "Client C"
+    },
+    {
+        text: "Excellent service and timely delivery. Will work with them again!",
+        author: "Client D"
+    }
+];
+
+// Testimonial Slider Functionality
+const testimonialContent = document.getElementById('testimonial-content');
+const testimonialPrev = document.getElementById('testimonial-prev');
+const testimonialNext = document.getElementById('testimonial-next');
+let currentTestimonial = 0;
+
+// Function to Display Testimonials
+function showTestimonial(index) {
+    testimonialContent.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Render Testimonials
+function renderTestimonials() {
+    testimonialContent.innerHTML = testimonials.map(testimonial => `
+        <div class="testimonial-item">
+            <p>"${testimonial.text}"</p>
+            <span>- ${testimonial.author}</span>
+        </div>
+    `).join('');
+}
+
+// Next Testimonial
+testimonialNext.addEventListener('click', () => {
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    showTestimonial(currentTestimonial);
+});
+
+// Previous Testimonial
+testimonialPrev.addEventListener('click', () => {
+    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+    showTestimonial(currentTestimonial);
+});
+
+// Auto-Scroll Testimonials
+let autoScrollInterval;
+
+function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }, 5000); // Change testimonial every 5 seconds
+}
+
+function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+}
+
+// Start Auto-Scroll on Page Load
+startAutoScroll();
+
+// Pause Auto-Scroll on Hover
+testimonialContent.addEventListener('mouseenter', stopAutoScroll);
+testimonialContent.addEventListener('mouseleave', startAutoScroll);
+
+// Render Testimonials on Page Load
+renderTestimonials();
+showTestimonial(currentTestimonial);
