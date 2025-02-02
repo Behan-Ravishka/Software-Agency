@@ -513,15 +513,23 @@ body.dark-mode .notification-item .swipe-area {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 60px;
-        left: 0;
+        top: 70px;
+        left: 40px;
         right: 0;
         background-color: #333;
         padding: 1rem;
+        align-items: center;
+        opacity: 95%;
+        border-radius: 30px;
+        width: 80%;
     }
 
     nav .nav-links.active {
         display: flex;
+    }
+
+    nav .nav-links a:hover {
+        color: #ff6b6b;
     }
 
     #notification-center {
@@ -531,8 +539,8 @@ body.dark-mode .notification-item .swipe-area {
     #notification-dropdown {
         width: 80%;
         right: 0;
-        left: 0;
-        top: 60px;
+        left: 5px;
+        top: 65px;
         border-radius: 5px;
         position: fixed;
         /* Fix the dropdown to the viewport */

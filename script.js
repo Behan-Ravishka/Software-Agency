@@ -455,7 +455,7 @@ logoText.addEventListener('mouseenter', () => {
 });
 
 // Close Notification Dropdown when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const notificationCenter = document.getElementById('notification-center');
     const notificationDropdown = document.getElementById('notification-dropdown');
     if (!notificationCenter.contains(event.target)) {
