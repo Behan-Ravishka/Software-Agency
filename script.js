@@ -453,3 +453,12 @@ logoText.addEventListener('mouseenter', () => {
         ease: 'power2.inOut',
     });
 });
+
+// Close Notification Dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const notificationCenter = document.getElementById('notification-center');
+    const notificationDropdown = document.getElementById('notification-dropdown');
+    if (!notificationCenter.contains(event.target)) {
+        notificationDropdown.classList.remove('visible');
+    }
+});
