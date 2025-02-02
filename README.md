@@ -52,7 +52,7 @@ Welcome to **CodeCraft Studios**, a modern and interactive website designed for 
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/Behan-Ravishka/codecraft-studios.git
+git clone https://github.com/Behan-Ravishka/Software-Agency-Website.git
 cd codecraft-studios
 ```
 
